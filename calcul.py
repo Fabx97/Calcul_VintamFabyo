@@ -1,23 +1,69 @@
-ue1 = {
-    'R101':10, 'R102':10, 'R103':7, 'R104':7, 'R105':0, 'R106':5,
-    'R107':0, 'R108':6, 'R109':0, 'R110':5, 'R111':4, 'R112':2,
-    'R113':5, 'R114':5, 'R115':0, 'SAE11':20, 'SAE12':20, 'SAE13':0,
-    'SAE14':0, 'SAE15':0, 'SAE16':7
+import matplotlib.pyplot as plt 
+
+import numpy as np 
+
+ue1note={
+    "R101":10,
+    "R102":10,
+    "R103":10,
+    "R104":2
+}
+ue1coef={
+    "R101":5,
+    "R102":5,
+    "R103":5,
+    "R104":5,
+    "R105":10
+}
+ue2note={
+    "R101":10,
+    "R102":10,
+    "R103":10,
+    "R104":15
+}
+ue2coef={
+    "R101":5,
+    "R102":5,
+    "R103":5,
+    "R104":5,
+    "R105":15
+}
+ue3note={
+    "R101":10,
+    "R102":10,
+    "R103":10,
+    "R104":20
+}
+ue3coef={
+    "R101":5,
+    "R102":5,
+    "R103":5,
+    "R104":5,
+    "R105":20
 }
 
-list_ue1 = [20] * len(ue1)  # 21 coefficients de 20
-
-
 def calcul():
-    total_note = 0
-    total_coef = 0
-    
-    for note, coef in zip(ue1.values(), list_ue1):
-        total_note += note * coef
-        total_coef += coef
-    
-    moyenne = total_note / total_coef
-    return moyenne
-
-
-print("Moyenne UE1 :", calcul())
+    for element in (ue1note.keys()):
+        total_note1 = 0
+        total_coef1 = 0
+        total_note2 = 0
+        total_coef2 = 0
+        total_note3 = 0
+        total_coef3 = 0
+        total_note1 += ue1note[element]*ue1coef[element] 
+        total_coef1 += ue1coef[element]
+        total_note2 += ue2note[element]*ue2coef[element]
+        total_coef2 += ue2coef[element]
+        total_note3 += ue3note[element]*ue3coef[element]
+        total_coef3 += ue3coef[element]
+        moyenne_ue1 = total_note1 / total_coef1
+        moyenne_ue2 = total_note2 / total_coef2
+        moyenne_ue3 = total_note3 / total_coef3
+    plt.bar(["ue1","ue2","ue3"],[moyenne_ue1, moyenne_ue2, moyenne_ue3])
+    def color(value):
+        if value > 10:
+            return 'green'
+        elif value > 8:
+            return 'orange'
+        else:
+            return 'red'
