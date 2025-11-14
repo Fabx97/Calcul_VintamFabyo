@@ -5,9 +5,19 @@ ue1 = {
     'SAE14':0, 'SAE15':0, 'SAE16':7
 }
 
-list_ue1 = [20] * len(ue1)   # 21 fois 20
+list_ue1 = [20] * len(ue1)  # 21 coefficients de 20
 
-# Multiplication élément par élément (dictionnaire → liste)
-resultats = [note * coef for note, coef in zip(ue1.values(), list_ue1)]
 
-print(resultats)
+def calcul():
+    total_note = 0
+    total_coef = 0
+    
+    for note, coef in zip(ue1.values(), list_ue1):
+        total_note += note * coef
+        total_coef += coef
+    
+    moyenne = total_note / total_coef
+    return moyenne
+
+
+print("Moyenne UE1 :", calcul())
